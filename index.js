@@ -1,21 +1,30 @@
-const convertToCelsius = (tempF) => {
-const tempC = (tempF - 32) * 5/9
-return tempC
+const userTempInF = () => {
+    let tempF = prompt("Please enter your temperature in Fahrenheit");
+    return Number(tempF)
 }
 
-const describeTemperature = (tempF) => {
-    const tempC = convertToCelsius(tempF)
+const convertToCelsius = () => {
+    const tempF = userTempInF();
+    let tempC = (tempF - 32) * 5/9
+    tempC = Math.round(tempC)
+    return { tempC, tempF }
+}
+
+const describeTemperature = () => {
+    const { tempC, tempF } = convertToCelsius()
     if(tempC < 0){
-        return 'very cold'
-    }else if(tempC < 20 && tempC >= 0){
-        return 'cold'
-    }else if(tempC < 30 && tempC >= 20){
-        return 'warm'
-    }else if(tempC < 40 && tempC >= 30){
-        return 'hot'
+        alert (`${tempF} F is equal to ${tempC} C and it feels like very cold`)
+    }else if(tempC < 20){
+        alert (`${tempF} F is equal to ${tempC} C and it feels like cold`)
+    }else if(tempC < 30){
+        alert (`${tempF} F is equal to ${tempC} C and it feels like warm`)
+    }else if(tempC < 40){
+        alert (`${tempF} F is equal to ${tempC} C and it feels like hot`)
     }else if(tempC >= 40){
-        return 'very hot'
+        alert (`${tempF} F is equal to ${tempC} C and it feels like very hot`)
     }else{
-        return 'something went wrong'
+        alert ('something went wrong')
     }
 }
+
+describeTemperature()
